@@ -1,10 +1,12 @@
+"use client"
 // pages/Dashboard/page.jsx
-import Carousel from './Carousel.tsx';
-
+import Assistant from './Assistant';
+import Carousel from './Carousel';
 const Dashboard = () => {
   return (
     <div>
       <h1>Dashboard</h1>
+      <Assistant />
       <Carousel />
     </div>
   );
