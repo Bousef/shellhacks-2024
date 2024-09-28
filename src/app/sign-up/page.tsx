@@ -78,7 +78,7 @@ const LoginForm: React.FC = () => {
               id="firstName"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
+              className="w-full text-black mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
               placeholder="Enter your first name"
               required
             />
@@ -90,7 +90,7 @@ const LoginForm: React.FC = () => {
               id="lastName"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
+              className="w-full text-black mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
               placeholder="Enter your last name"
               required
             />
@@ -102,7 +102,7 @@ const LoginForm: React.FC = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
+              className="w-full text-black mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
               placeholder="Enter your email"
               required
             />
@@ -114,7 +114,7 @@ const LoginForm: React.FC = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
+              className="w-full text-black mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
               placeholder="Enter your password"
               required
             />
@@ -126,7 +126,7 @@ const LoginForm: React.FC = () => {
               id="verifyPassword"
               value={verifyPassword}
               onChange={(e) => setVerifyPassword(e.target.value)}
-              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
+              className="w-full text-black mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
               placeholder="Re-enter your password"
               required
             />
@@ -135,9 +135,9 @@ const LoginForm: React.FC = () => {
             <div className="text-red-500 text-sm">{errorMessage}</div>
           )}
           <button
-            type="submit"
-            className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
+          type="submit"
+          className="bg-yellow-500 w-full py-3 px-4 hover:bg-yellow-600 text-white font-semibold rounded-lg shadow-md focus:outline-none transition duration-300 ease-in-out"
+           >
             Sign Up
           </button>
           <div className="text-black">
