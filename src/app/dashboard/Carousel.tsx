@@ -10,6 +10,7 @@ import { StaticImageData } from 'next/image';
 import CapitalOne from './images/capitalOneImg.jpg';
 import Capital2 from './images/capitalOneImg2.jpg';
 import Discover from './images/discoverImg.png';
+import BankOfAmerica from './images/boaimage.png';
 
 interface CreditCard {
   name: string;
@@ -34,8 +35,8 @@ const creditCards: CreditCard[] = [
     description: "No annual or hidden fees, and you can earn unlimited 1.5% cash back on every purchase, every day. See if you're approved in seconds Put down a refundable $200 security deposit to get a $200 initial credit line"
   },
   {
-    name: 'Capital One Platinum Secured Credit Card',
-    image: Capital2,
+    name: 'BankAmericard® Secured Credit Card',
+    image: BankOfAmerica,
     description: "A secured credit card designed to help establish, strengthen or rebuild credit. Your maximum credit limit will be determined by the amount of the security deposit you provide, your income and your ability to pay the credit line established. If you provide a deposit that exceeds the calculated maximum amount based on your ability to pay, a check will be returned to you for the difference."
   },
   {
@@ -45,7 +46,7 @@ const creditCards: CreditCard[] = [
   },
   {
     name: 'Capital One Quicksilver Secured Cash Rewards Credit Card',
-    image: CapitalOne,
+    image: Capital2,
     description: "No annual or hidden fees, and you can earn unlimited 1.5% cash back on every purchase, every day. See if you're approved in seconds. Put down a refundable $200 security deposit to get a $200 initial credit line."
   },
 ];
