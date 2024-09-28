@@ -1,4 +1,8 @@
+import OpenAI from "openai";
 import React, { useState } from "react";
+
+// === AI Feature ===
+const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, dangerouslyAllowBrowser: true });
 
 interface Expense {
   id: number;
@@ -13,7 +17,82 @@ const Budget = () => {
   const [savingsGoal, setSavingsGoal] = useState<string>(""); // Monthly savings goal
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [newExpense, setNewExpense] = useState<Partial<Expense>>({}); // Input for new expenses
+  const [tip, setTip] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [budgetSuggestions, setBudgetSuggestions] = useState<string>(""); // State for budget suggestions
+  const [loadingSuggestions, setLoadingSuggestions] = useState(false); // Loading state for budget suggestions
+  const [suggestedBudgets, setSuggestedBudgets] = useState<any[]>([]); // State for structured budget suggestions
 
+  // Fetch Completion of AI prompt based on user input
+  const fetchCompletion = async () => {
+    if (loading) return; // Prevent further calls if already loading
+    setLoading(true); // Set loading state to true
+  
+    // Construct a detailed prompt with a focus on brevity
+    const totalExpenses = getTotalExpenses();
+    const remainingBudget = getRemainingBudget();
+  
+    const prompt = `
+      I have a monthly budget of $${budget}. 
+      My total expenses so far are $${totalExpenses}. 
+      I am trying to save $${savingsGoal} this month. 
+      Please give me a short, clear financial tip that helps me manage my finances effectively, considering my current expenses and remaining budget of $${remainingBudget}. 
+      The tip should be simple and easy to understand for someone with limited access to technology.
+    `;
+  
+    try {
+      const completion = await openai.chat.completions.create({
+        messages: [{ role: "user", content: prompt }],
+        model: "gpt-4o-mini",
+      });
+  
+      setTip(completion.choices[0].message.content || "ERROR");
+    } catch (error) {
+      console.error("Error fetching completion:", error);
+      setTip("Error fetching tip. Please try again.");
+    } finally {
+      setLoading(false); // Reset loading state
+    }
+  };
+
+  // Fetch Budget Suggestions
+  const fetchBudgetSuggestions = async () => {
+    if (loadingSuggestions) return;
+    if (!budget || !savingsGoal) {
+      setBudgetSuggestions("Please enter both your monthly budget and savings goal.");
+      return;
+    }
+    setLoadingSuggestions(true);
+  
+    const prompt = `
+      Based on a monthly budget of $${budget} and a savings goal of $${savingsGoal}, please suggest a simple budget allocation for different categories such as Food, Rent, Utilities, and Entertainment. 
+      Provide clear percentage allocations for each category, formatted as: Category, Percentage.
+    `;
+  
+    try {
+      const completion = await openai.chat.completions.create({
+        messages: [{ role: "user", content: prompt }],
+        model: "gpt-4o-mini",
+      });
+  
+      const suggestions = completion.choices[0].message.content || "ERROR";
+      setBudgetSuggestions(suggestions);
+  
+      // Parse the suggestions
+      const rows = suggestions.split('\n').map(row => {
+        const [category, percentage] = row.split(',').map(item => item.trim());
+        return { category, percentage };
+      }).filter(item => item.category && item.percentage);
+  
+      setSuggestedBudgets(rows); // Store the parsed suggestions
+    } catch (error) {
+      console.error("Error fetching budget suggestions:", error);
+      setBudgetSuggestions("Error fetching budget suggestions. Please try again.");
+    } finally {
+      setLoadingSuggestions(false);
+    }
+  };
+  
   // Handle input for the budget
   const handleBudgetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBudget(e.target.value);
@@ -86,6 +165,17 @@ const Budget = () => {
   return (
     <div className="budget-tab min-h-screen bg-blue-950 text-white p-8">
       <h2 className="text-4xl font-bold mb-6 text-yellow-500">Budget Planner</h2>
+      <div className="my-4 p-4 border border-yellow-500 rounded-md bg-blue-800">
+        <h1 className="text-2xl font-bold text-yellow-500 mb-2">AI Assistant</h1>
+        <p className="text-white">{tip || "Your tip will appear here."}</p>
+        <button 
+          className={`mt-2 px-4 py-2 ${loading ? "bg-gray-500" : "bg-yellow-500"} text-white rounded transition-all duration-300 hover:bg-yellow-600`}
+          onClick={fetchCompletion}
+          disabled={loading}
+        >
+          {loading ? "Loading..." : "Give me a tip"}
+        </button>
+      </div>
 
       {/* Input for Monthly Budget */}
       <div className="mb-8">
@@ -182,7 +272,46 @@ const Budget = () => {
         <p>{getSavingsGoalMessage()}</p>
       </div>
 
+      <div className="mt-8">
+  <button 
+    className={`mt-2 px-4 py-2 ${loadingSuggestions ? "bg-gray-500" : "bg-yellow-500"} text-white rounded transition-all duration-300 hover:bg-yellow-600`}
+    onClick={fetchBudgetSuggestions}
+    disabled={loadingSuggestions}
+  >
+    {loadingSuggestions ? "Loading..." : "Make Me a Budget"}
+  </button>
+  {budgetSuggestions && (
+    <div className="mt-4">
+      <h2 className="text-lg font-bold mb-2">Budget Suggestions:</h2>
+      <table className="min-w-full bg-blue-800 text-white border border-yellow-500">
+        <thead>
+          <tr>
+            <th className="py-2 border-b">Category</th>
+            <th className="py-2 border-b">Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {suggestedBudgets.length > 0 ? (
+            suggestedBudgets.map((suggestion, index) => (
+              <tr key={index}>
+                <td className="py-2 border-b">{suggestion.category}</td>
+                <td className="py-2 border-b">{suggestion.percentage}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={2} className="py-2 text-center">No suggestions available.</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  )}
+</div>
+
+
       {/* Expense Table */}
+      <br />
       <div className="overflow-auto">
         <table className="min-w-full bg-white border-collapse text-black rounded-lg overflow-hidden">
           <thead>
