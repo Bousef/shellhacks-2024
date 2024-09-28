@@ -16,7 +16,7 @@ const SignIn: React.FC = () => {
             const res = await signInWithEmailAndPassword(email, password);
             console.log({ res });
             if (res) {
-                router.push('/home'); // Navigate to home page upon successful login
+                router.push('/dashboard'); // Navigate to dashboard page upon successful login
             }
             setEmail('');
             setPassword('');
@@ -26,13 +26,20 @@ const SignIn: React.FC = () => {
         }
     };
 
+    const handleRegisterClick = () => {
+        router.push('/sign-up'); // Navigate to sign-up page
+    };
+
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-500 to-purple-600">
-            <div className="w-full max-w-md p-10 bg-white rounded-xl shadow-2xl space-y-8 transform hover:scale-105 transition-all duration-500 ease-in-out">
-                <h2 className="text-4xl font-extrabold text-center text-gray-900">Sign In</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+                <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
+                <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        <label
+                            htmlFor="email"
+                            className="block text-sm font-medium text-gray-700"
+                        >
                             Email
                         </label>
                         <input
@@ -40,14 +47,16 @@ const SignIn: React.FC = () => {
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
+                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Enter your email"
                             required
                         />
                     </div>
-
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                        <label
+                            htmlFor="password"
+                            className="block text-sm font-medium text-gray-700"
+                        >
                             Password
                         </label>
                         <input
@@ -55,25 +64,28 @@ const SignIn: React.FC = () => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
+                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Enter your password"
                             required
                         />
                     </div>
-
-                    {error && <p className="text-red-500">{error.message}</p>}
-
                     <button
                         type="submit"
-                        className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition-colors"
                     >
-                        {loading ? 'Signing In...' : 'Sign In'}
+                        {loading ? 'Logging in...' : 'Login'}
                     </button>
+                    {error && <p className="text-red-500 mt-2">{error.message}</p>}
                 </form>
-
-                <div className="text-black">
-                    <h3>Don't have an account? <a className="text-blue-500 hover:underline" href="/sign-up">Register</a></h3>
-                </div>
+                <p className="text-sm text-center mt-4">
+                    Don’t have an account?{" "}
+                    <button
+                        onClick={handleRegisterClick}
+                        className="text-blue-500 hover:underline"
+                    >
+                        Create an Account
+                    </button>
+                </p>
             </div>
         </div>
     );
