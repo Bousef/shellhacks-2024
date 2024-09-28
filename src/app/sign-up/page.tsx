@@ -67,7 +67,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 animate-gradient">
+    <div className="flex justify-center items-center min-h-screen bg-blue-950">
       <div className="w-full max-w-md p-10 bg-white rounded-xl shadow-2xl space-y-8 transform hover:scale-105 transition-all duration-500 ease-in-out">
         <h2 className="text-4xl font-extrabold text-center text-gray-900">Sign Up</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
