@@ -126,7 +126,7 @@ const LoginForm: React.FC = () => {
               id="verifyPassword"
               value={verifyPassword}
               onChange={(e) => setVerifyPassword(e.target.value)}
-              className="w-full text-black mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
+              className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
               placeholder="Re-enter your password"
               required
             />
