@@ -1,21 +1,25 @@
-"use client"; // This tells Next.js to treat the component as a Client Component
+"use client"; // Required for Next.js Client Component
 import { auth } from '@/app/firebase/config';
 import { useRouter } from 'next/navigation';
 import React, { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { sendEmailVerification } from 'firebase/auth';
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
   const router = useRouter();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission
     try {
       const res = await createUserWithEmailAndPassword(email, password);
       console.log({ res });
 
-      if (res) {
+      if (res?.user) {
+        // Send verification email after sign-up
+        await sendEmailVerification(res.user);
         setEmail('');
         setPassword('');
         router.push('/verification'); // Navigate to verification page upon success
