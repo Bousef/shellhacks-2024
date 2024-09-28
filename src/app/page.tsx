@@ -7,7 +7,7 @@ const DefaultPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/home'); // Redirect to the home page
+    router.push('/main'); // Redirect to the home page
   }, [router]);
 
   return null;

@@ -1,9 +1,11 @@
 "use client"; // This tells Next.js to treat the component as a Client Component
 import { auth, db } from '@/app/firebase/config';
 import { ref, set } from 'firebase/database'; // Importing ref and set functions
+
 import { useRouter } from 'next/navigation';
 import React, { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { sendEmailVerification } from 'firebase/auth';
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -67,7 +69,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 animate-gradient">
+    <div className="flex justify-center items-center min-h-screen bg-blue-950">
       <div className="w-full max-w-md p-10 bg-white rounded-xl shadow-2xl space-y-8 transform hover:scale-105 transition-all duration-500 ease-in-out">
         <h2 className="text-4xl font-extrabold text-center text-gray-900">Sign Up</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -136,10 +138,11 @@ const LoginForm: React.FC = () => {
           )}
           <button
             type="submit"
-            className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="bg-yellow-500 w-full py-3 px-4 hover:bg-yellow-600 text-white font-semibold rounded-lg shadow-md focus:outline-none transition duration-300 ease-in-out"
           >
-            Sign Up
+            {loading ? "Signing up..." : "Sign Up"}
           </button>
+          {error && <p className="text-red-500">{error.message}</p>}
           <div className="text-black">
             <h3>Already have an account? <a className="text-blue-500 hover:underline" href="/login">Log In</a></h3>
           </div>
