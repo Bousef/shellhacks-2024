@@ -9,8 +9,9 @@ const Home = () => {
 
     if (!user) {
         console.log("USER NOT SIGNED IN");
-        router.push('/sign-up');
+        router.push('/login');
     }
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="text-center p-6 bg-white rounded-lg shadow-md">

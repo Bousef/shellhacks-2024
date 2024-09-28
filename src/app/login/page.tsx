@@ -27,44 +27,53 @@ const SignIn: React.FC = () => {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
-                <h2 className="text-2xl font-semibold text-center text-gray-700">Sign In</h2>
-                <form onSubmit={handleSubmit} className="mt-4">
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm text-gray-700">Email</label>
+        <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-500 to-purple-600">
+            <div className="w-full max-w-md p-10 bg-white rounded-xl shadow-2xl space-y-8 transform hover:scale-105 transition-all duration-500 ease-in-out">
+                <h2 className="text-4xl font-extrabold text-center text-gray-900">Sign In</h2>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            Email
+                        </label>
                         <input
                             type="email"
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
                             placeholder="Enter your email"
                             required
                         />
                     </div>
 
-                    <div className="mb-6">
-                        <label htmlFor="password" className="block text-sm text-gray-700">Password</label>
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
                         <input
                             type="password"
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300 ease-in-out hover:border-blue-500"
                             placeholder="Enter your password"
                             required
                         />
                     </div>
 
+                    {error && <p className="text-red-500">{error.message}</p>}
+
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:bg-blue-600 transition duration-200"
+                        className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                         {loading ? 'Signing In...' : 'Sign In'}
                     </button>
                 </form>
-                {error && <p className="text-red-500 mt-2">{error.message}</p>}
+
+                <div className="text-black">
+                    <h3>Don't have an account? <a className="text-blue-500 hover:underline" href="/sign-up">Register</a></h3>
+                </div>
             </div>
         </div>
     );
