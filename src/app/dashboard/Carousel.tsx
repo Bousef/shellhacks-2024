@@ -7,59 +7,76 @@ import "slick-carousel/slick/slick.css"; // Correct CSS import
 
 // Image Imports
 import { StaticImageData } from 'next/image';
+import BankOfAmerica from './images/boaimage.png';
 import CapitalOne from './images/capitalOneImg.jpg';
 import Capital2 from './images/capitalOneImg2.jpg';
 import Discover from './images/discoverImg.png';
-import BankOfAmerica from './images/boaimage.png';
 
 interface CreditCard {
   name: string;
-  image: StaticImageData; // Change ImageData to string
+  image: StaticImageData;
   description: string;
 }
 
 const creditCards: CreditCard[] = [
   {
     name: 'Discover it Student Cash Back',
-    image: Discover, // This should be a string URL to the image
-    description: "INTRO OFFER: Unlimited Cashback Match for all new cardmembers - only from Discover. Discover will automatically match all the cash back you've earned at the end of your first year! So you could turn $50 cash back into $100. Or turn $100 cash back into $200. There's no minimum spending or maximum rewards. Just a dollar-for-dollar match."
+    image: Discover,
+    description: "INTRO OFFER: Unlimited Cashback Match for all new cardmembers - only from Discover..."
   },
   {
     name: 'Discover it Student Chrome',
     image: Discover,
-    description: "INTRO OFFER: Unlimited Cashback Match for all new cardmembers - only from Discover. Discover will automatically match all the cash back you've earned at the end of your first year! So you could turn $50 cash back into $100. Or turn $100 cash back into $200. There's no minimum spending or maximum rewards. Just a dollar-for-dollar match."
+    description: "INTRO OFFER: Unlimited Cashback Match for all new cardmembers - only from Discover..."
   },
   {
     name: 'Capital One Platinum Secured Credit Card',
     image: CapitalOne,
-    description: "No annual or hidden fees, and you can earn unlimited 1.5% cash back on every purchase, every day. See if you're approved in seconds Put down a refundable $200 security deposit to get a $200 initial credit line"
+    description: "No annual or hidden fees, and you can earn unlimited 1.5% cash back on every purchase, every day..."
   },
   {
     name: 'BankAmericard® Secured Credit Card',
     image: BankOfAmerica,
-    description: "A secured credit card designed to help establish, strengthen or rebuild credit. Your maximum credit limit will be determined by the amount of the security deposit you provide, your income and your ability to pay the credit line established. If you provide a deposit that exceeds the calculated maximum amount based on your ability to pay, a check will be returned to you for the difference."
+    description: "A secured credit card designed to help establish, strengthen or rebuild credit..."
   },
   {
     name: 'Discover it® Secured Credit Card',
     image: Discover,
-    description:  "No credit score required to apply. No Annual Fee, earn cash back, and build your credit history. Your secured credit card requires a refundable security deposit, and your credit line will equal your deposit amount, starting at $200. Bank information must be provided when submitting your deposit."
+    description: "No credit score required to apply. No Annual Fee, earn cash back, and build your credit history..."
   },
   {
     name: 'Capital One Quicksilver Secured Cash Rewards Credit Card',
     image: Capital2,
-    description: "No annual or hidden fees, and you can earn unlimited 1.5% cash back on every purchase, every day. See if you're approved in seconds. Put down a refundable $200 security deposit to get a $200 initial credit line."
+    description: "No annual or hidden fees, and you can earn unlimited 1.5% cash back on every purchase, every day..."
   },
 ];
 
 const CreditCardCarousel: React.FC = () => {
   const settings = {
     dots: true,
-    infinite: true, // Changed to true for looping
+    infinite: true,
     speed: 500,
-    slidesToShow: 3,  // Show three cards at once
+    slidesToShow: 3,
     slidesToScroll: 1,
-    centerMode: false, // Set to false for better alignment
-    centerPadding: '0', // Remove padding to avoid spacing issues
+    centerMode: false,
+    centerPadding: '0',
+    arrows: true, // Enable navigation arrows
+    responsive: [
+      {
+        breakpoint: 768, // For tablet and mobile devices
+        settings: {
+          slidesToShow: 1, // Show one card at a time
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1024, // For larger mobile devices
+        settings: {
+          slidesToShow: 2, // Show two cards at a time
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
