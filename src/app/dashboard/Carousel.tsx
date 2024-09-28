@@ -24,14 +24,29 @@ const creditCards: CreditCard[] = [
     description: "INTRO OFFER: Unlimited Cashback Match for all new cardmembers - only from Discover. Discover will automatically match all the cash back you've earned at the end of your first year! So you could turn $50 cash back into $100. Or turn $100 cash back into $200. There's no minimum spending or maximum rewards. Just a dollar-for-dollar match."
   },
   {
-    name: 'Card B',
-    image: CapitalOne,
-    description: "Enjoy peace of mind with $0 Fraud Liability so that you won't be responsible for unauthorized charges Monitor your credit score with CreditWise from Capital One. It's free for everyone Get access to your account 24 hours a day, 7 days a week with online banking to access your account from your desktop or smartphone, with Capital One's mobile app",
+    name: 'Discover it Student Chrome',
+    image: Discover,
+    description: "INTRO OFFER: Unlimited Cashback Match for all new cardmembers - only from Discover. Discover will automatically match all the cash back you've earned at the end of your first year! So you could turn $50 cash back into $100. Or turn $100 cash back into $200. There's no minimum spending or maximum rewards. Just a dollar-for-dollar match."
   },
   {
-    name: 'Card C',
+    name: 'Capital One Platinum Secured Credit Card',
+    image: CapitalOne,
+    description: "No annual or hidden fees, and you can earn unlimited 1.5% cash back on every purchase, every day. See if you're approved in seconds Put down a refundable $200 security deposit to get a $200 initial credit line"
+  },
+  {
+    name: 'Capital One Platinum Secured Credit Card',
     image: Capital2,
-    description: "No annual or hidden fees, and you can earn unlimited 1.5% cash back on every purchase, every day. See if you're approved in seconds Put down a refundable $200 security deposit to get a $200 initial credit line",
+    description: "A secured credit card designed to help establish, strengthen or rebuild credit. Your maximum credit limit will be determined by the amount of the security deposit you provide, your income and your ability to pay the credit line established. If you provide a deposit that exceeds the calculated maximum amount based on your ability to pay, a check will be returned to you for the difference."
+  },
+  {
+    name: 'Discover it® Secured Credit Card',
+    image: Discover,
+    description:  "No credit score required to apply. No Annual Fee, earn cash back, and build your credit history. Your secured credit card requires a refundable security deposit, and your credit line will equal your deposit amount, starting at $200. Bank information must be provided when submitting your deposit."
+  },
+  {
+    name: 'Capital One Quicksilver Secured Cash Rewards Credit Card',
+    image: CapitalOne,
+    description: "No annual or hidden fees, and you can earn unlimited 1.5% cash back on every purchase, every day. See if you're approved in seconds. Put down a refundable $200 security deposit to get a $200 initial credit line."
   },
 ];
 
