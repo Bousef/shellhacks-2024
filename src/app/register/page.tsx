@@ -1,6 +1,6 @@
 "use client";  // This should be the first line in the file
 
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const RegisterPage: React.FC = () => {
@@ -20,6 +20,10 @@ const RegisterPage: React.FC = () => {
           <div>
             <label className="block text-sm font-medium mb-1 text-black font-extrabold" htmlFor="username">Username</label>
             <input className="w-full p-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="username" name="username" required />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1 text-black font-extrabold" htmlFor="username">Email</label>
+            <input className="w-full p-2 border text-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="email" name="email" required />
           </div>
           <div>
             <label className="block text-sm font-medium mb-1 text-black font-extrabold" htmlFor="firstname">First Name</label>
