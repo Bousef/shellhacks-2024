@@ -1,7 +1,13 @@
-const dashboard = () => {
-  return (
-    <h1>DASHBOARD</h1>
-  )
-}
+// pages/Dashboard/page.jsx
+import Carousel from './Carousel.tsx';
 
-export default dashboard;
+const Dashboard = () => {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <Carousel />
+    </div>
+  );
+};
+
+export default Dashboard;
