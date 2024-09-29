@@ -35,7 +35,7 @@ const Assistant = () => {
       <button 
         className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
         onClick={fetchCompletion}
-        disabled={loading} // Disable button while loading
+        disabled={loading}
       >
         {loading ? "Loading..." : "Give me a tip"}
       </button>
