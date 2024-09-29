@@ -38,14 +38,13 @@ const Budget = () => {
       I have a monthly budget of $${budget}. 
       My total expenses so far are $${totalExpenses}. 
       I am trying to save $${savingsGoal} this month. 
-      Please give me a short, clear financial tip that helps me manage my finances effectively, considering my current expenses and remaining budget of $${remainingBudget}. 
-      The tip should be simple and easy to understand for someone with limited access to technology.
+      Please give me a short, clear financial tip that helps me manage my finances effectively, considering my current expenses and remaining budget of $${remainingBudget}.
     `;
   
     try {
       const completion = await openai.chat.completions.create({
         messages: [{ role: "user", content: prompt }],
-        model: "gpt-4o-mini",
+        model: "gpt-4",
       });
   
       setTip(completion.choices[0].message.content || "ERROR");
@@ -103,15 +102,17 @@ const Budget = () => {
     }
     setLoadingSuggestions(true);
   
-    const prompt = `
+    
+    let prompt = `
       Based on a monthly budget of $${budget} and a savings goal of $${savingsGoal}, suggest a simple budget allocation for different categories such as Food, Rent, Utilities, and Entertainment.
-      Provide clear percentage allocations for each category, Format it as a table, you will not say or talk about anything else or else you will die, simply reply to this prompt with the table formatted as: Category, Percentage. 
+      Provide clear percentage allocations for each category, Format it as a table. simply reply to this prompt with the table formatted as: Category, Percentage. 
     `;
-  
+    
+   // let prompt = "Hello, how is your day going?";
     try {
       const completion = await openai.chat.completions.create({
         messages: [{ role: "user", content: prompt }],
-        model: "gpt-4o-mini",
+        model: "gpt-4o",
       });
   
       const suggestions = completion.choices[0].message.content || "ERROR";
