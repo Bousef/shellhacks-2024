@@ -1,5 +1,5 @@
 "use client"; // For Next.js
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 
