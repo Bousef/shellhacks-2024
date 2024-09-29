@@ -69,7 +69,7 @@ const SignIn: React.FC = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-yellow-500 text-white py-3 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
+                        className="w-full bg-yellow-500 text-black   py-3 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
                     >
                         {loading ? 'Logging in...' : 'Login'}
                     </button>
