@@ -14,14 +14,12 @@ const SignIn: React.FC = () => {
         e.preventDefault(); // Prevent the default form submission behavior
         try {
             const res = await signInWithEmailAndPassword(email, password);
-            console.log({ res });
             if (res) {
                 router.push('/dashboard'); // Navigate to dashboard page upon successful login
             }
             setEmail('');
             setPassword('');
         } catch (e) {
-            console.log("THERE WAS AN ERROR");
             console.error(e);
         }
     };
@@ -31,10 +29,10 @@ const SignIn: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-                <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
-                <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="min-h-screen flex items-center justify-center bg-blue-950">
+            <div className="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md hover:scale-105 transition-transform duration-300 ease-in-out">
+                <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-6">Login</h1>
+                <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
                         <label
                             htmlFor="email"
@@ -47,7 +45,7 @@ const SignIn: React.FC = () => {
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none hover:border-blue-500 transition duration-300 ease-in-out text-black"
                             placeholder="Enter your email"
                             required
                         />
@@ -64,20 +62,20 @@ const SignIn: React.FC = () => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block text-black w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none hover:border-blue-500 transition duration-300 ease-in-out"
                             placeholder="Enter your password"
                             required
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition-colors"
+                        className="w-full bg-yellow-500 text-white py-3 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
                     >
                         {loading ? 'Logging in...' : 'Login'}
                     </button>
                     {error && <p className="text-red-500 mt-2">{error.message}</p>}
                 </form>
-                <p className="text-sm text-center mt-4">
+                <p className="text-sm text-center text-black mt-4">
                     Don’t have an account?{" "}
                     <button
                         onClick={handleRegisterClick}
