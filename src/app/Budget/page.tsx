@@ -22,6 +22,7 @@ const Budget = () => {
   const [budgetSuggestions, setBudgetSuggestions] = useState<string>(""); // State for budget suggestions
   const [loadingSuggestions, setLoadingSuggestions] = useState(false); // Loading state for budget suggestions
   const [suggestedBudgets, setSuggestedBudgets] = useState<any[]>([]); // State for structured budget suggestions
+  const [ttsLoading, setTtsLoading] = useState(false); // Loading state for Text-to-Speech
 
   // Fetch Completion of AI prompt based on user input
   const fetchCompletion = async () => {
@@ -47,6 +48,8 @@ const Budget = () => {
       });
   
       setTip(completion.choices[0].message.content || "ERROR");
+      
+
     } catch (error) {
       console.error("Error fetching completion:", error);
       setTip("Error fetching tip. Please try again.");
@@ -54,6 +57,41 @@ const Budget = () => {
       setLoading(false); // Reset loading state
     }
   };
+
+  // Text to Speech
+  const handleTextToSpeech = async () => {
+    if (ttsLoading || !tip) return;
+  
+    setTtsLoading(true);
+    try {
+      // Create a new SpeechSynthesisUtterance
+      const speech = new SpeechSynthesisUtterance(tip);
+  
+      // Get available voices
+      const voices = window.speechSynthesis.getVoices();
+  
+      // Filter and select a more human-like voice (e.g., Google UK English Female)
+      const humanVoice = voices.find(
+        (voice) => voice.name.includes("Google") && voice.lang === "en-GB" // Example for UK English voice
+      );
+  
+      // If found, set the human-like voice
+      if (humanVoice) {
+        speech.voice = humanVoice;
+      } else {
+        console.warn("Preferred voice not found, using default voice.");
+      }
+  
+      // Speak the text
+      window.speechSynthesis.speak(speech);
+    } catch (error) {
+      console.error("Error with text-to-speech:", error);
+    } finally {
+      setTtsLoading(false);
+    }
+  };
+  
+  
 
   // Fetch Budget Suggestions
   const fetchBudgetSuggestions = async () => {
@@ -77,7 +115,6 @@ const Budget = () => {
   
       const suggestions = completion.choices[0].message.content || "ERROR";
       setBudgetSuggestions(suggestions);
-  
       // Parse the suggestions
       const rows = suggestions.split('\n').map(row => {
         const [category, percentage] = row.split(',').map(item => item.trim());
@@ -175,6 +212,14 @@ const Budget = () => {
         >
           {loading ? "Loading..." : "Give me a tip"}
         </button>
+        <button
+        className={`ml-2 mt-2 px-4 py-2 ${ttsLoading ? "bg-gray-500" : "bg-[#FFB74D]"} text-black font-bold rounded transition-all duration-300 hover:bg-yellow-600`}
+        onClick={handleTextToSpeech}
+        disabled={ttsLoading || !tip}
+        >
+        {ttsLoading ? "Speaking..." : "Listen to the Tip"}
+        </button>
+
       </div>
 
       {/* Input for Monthly Budget */}

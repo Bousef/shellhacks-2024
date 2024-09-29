@@ -1,9 +1,9 @@
 "use client"; // Required for Next.js Client Component
 import { auth } from '@/app/firebase/config';
-import { useRouter } from 'next/navigation';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useInView } from 'react-intersection-observer';
 
 const Home = () => {
@@ -48,10 +48,10 @@ return (
         className="text-center"
       >
         <h1 className="text-6xl font-bold mb-6 text-yellow-500 leading-tight">
-          Welcome to FinancePro
+          Welcome to Budget Buddy!
         </h1>
         <p className="text-lg mb-8 max-w-lg mx-auto text-white">
-          Manage your money, track investments, and set budgets effortlessly. Whether you're a beginner or a seasoned expert, FinancePro has the tools you need.
+          Manage your money, track investments, and set budgets effortlessly. Whether you're a beginner or a seasoned expert, Budget Buddy has the tools you need.
         </p>
         <motion.button
           onClick={handleLoginClick}
@@ -74,10 +74,10 @@ return (
         className="max-w-5xl mx-auto text-center"
       >
         <h2 className="text-5xl font-bold text-yellow-500 mb-10">
-          About FinancePro
+          About Budget Buddy
         </h2>
         <p className="text-lg mb-16">
-          FinancePro is designed to help users take control of their finances. With advanced budgeting tools, investment tracking, and real-time analytics, our platform helps you make informed decisions with ease.
+          Budget Buddy is designed to help users take control of their finances. With advanced budgeting tools, investment tracking, and real-time analytics, our platform helps you make informed decisions with ease.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <motion.div
