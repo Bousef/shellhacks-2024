@@ -163,13 +163,13 @@ const Budget = () => {
   };
 
   return (
-    <div className="budget-tab min-h-screen bg-blue-950 text-white p-8">
+    <div className="budget-tab min-h-screen bg-blue-950 rounded-2xl text-white p-8">
       <h2 className="text-4xl font-bold mb-6 text-yellow-500">Budget Planner</h2>
       <div className="my-4 p-4 border border-yellow-500 rounded-md bg-blue-800">
         <h1 className="text-2xl font-bold text-yellow-500 mb-2">AI Assistant</h1>
-        <p className="text-white">{tip || "Your tip will appear here."}</p>
+        <p className="text-white font-bold">{tip || "Your tip will appear here."}</p>
         <button 
-          className={`mt-2 px-4 py-2 ${loading ? "bg-gray-500" : "bg-yellow-500"} text-white rounded transition-all duration-300 hover:bg-yellow-600`}
+          className={`mt-2 px-4 py-2 ${loading ? "bg-gray-500" : "bg-[#FFB74D]"} text-black font-bold rounded transition-all duration-300 hover:bg-yellow-600`}
           onClick={fetchCompletion}
           disabled={loading}
         >
@@ -179,37 +179,37 @@ const Budget = () => {
 
       {/* Input for Monthly Budget */}
       <div className="mb-8">
-        <label className="block text-lg font-medium text-white mb-2">Monthly Budget</label>
+        <label className="block text-lg font-bold text-white mb-2">Monthly Budget</label>
         <input
           type="number"
           value={budget}
           onChange={handleBudgetChange}
-          className="w-full p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          className="w-full p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500 font-bold"
           placeholder="Enter your monthly budget"
         />
       </div>
 
       {/* Input for Savings Goal */}
       <div className="mb-8">
-        <label className="block text-lg font-medium text-white mb-2">Monthly Savings Goal</label>
+        <label className="block text-lg font-bold text-white mb-2">Monthly Savings Goal</label>
         <input
           type="number"
           value={savingsGoal}
           onChange={handleSavingsGoalChange}
-          className="w-full p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          className="w-full p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500 font-bold"
           placeholder="Enter your savings goal"
         />
       </div>
 
       {/* Input for New Expense */}
       <div className="mb-8">
-        <label className="block text-lg font-medium text-white mb-4">Add Expense</label>
+        <label className="block text-lg font-bold text-white mb-4">Add Expense</label>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <select
             name="category"
             value={newExpense.category || ""}
             onChange={handleExpenseChange}
-            className="p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500 font-bold"
           >
             <option value="">Select Category</option>
             <option value="Food">Food</option>
@@ -226,14 +226,14 @@ const Budget = () => {
             value={newExpense.amount || ""}
             onChange={handleExpenseChange}
             placeholder="Amount"
-            className="p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500 font-bold"
           />
           <input
             type="date"
             name="date"
             value={newExpense.date || ""}
             onChange={handleExpenseChange}
-            className="p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500 font-bold"
           />
           <input
             type="text"
@@ -241,13 +241,13 @@ const Budget = () => {
             value={newExpense.description || ""}
             onChange={handleExpenseChange}
             placeholder="Description"
-            className="p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            className="p-3 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-yellow-500 font-bold"
           />
         </div>
         <div className="mt-4">
           <button
             onClick={addExpense}
-            className="w-full p-3 bg-yellow-500 text-navy font-semibold rounded-md shadow-md hover:bg-yellow-600 transition-all duration-300"
+            className="w-full p-3 bg-[#FFB74D] text-black text-navy font-semibold rounded-md shadow-md hover:bg-yellow-600 transition-all duration-300 font-bold"
           >
             Add Expense
           </button>
@@ -257,24 +257,24 @@ const Budget = () => {
       {/* Total Non-Savings Expenses and Remaining Budget */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold">Total Non-Savings Expenses:</h3>
-          <span className="text-xl">${getTotalExpenses()}</span>
+          <h3 className="text-lg font-bold">Total Non-Savings Expenses:</h3>
+          <span className="text-xl font-bold">${getTotalExpenses()}</span>
         </div>
         <div className="flex justify-between items-center">
-          <h3 className="text-lg font-semibold">Remaining Budget:</h3>
-          <span className="text-xl">${getRemainingBudget()}</span>
+          <h3 className="text-lg font-bold">Remaining Budget:</h3>
+          <span className="text-xl font-bold">${getRemainingBudget()}</span>
         </div>
       </div>
 
       {/* Suggested Savings Plan */}
       <div className="mb-8">
         <h3 className="text-lg font-bold text-yellow-500">Savings Plan</h3>
-        <p>{getSavingsGoalMessage()}</p>
+        <p className="font-bold">{getSavingsGoalMessage()}</p>
       </div>
 
       <div className="mt-8">
   <button 
-    className={`mt-2 px-4 py-2 ${loadingSuggestions ? "bg-gray-500" : "bg-yellow-500"} text-white rounded transition-all duration-300 hover:bg-yellow-600`}
+    className={`mt-2 px-4 py-2 ${loadingSuggestions ? "bg-gray-500" : "bg-[#FFB74D]"} text-black rounded transition-all duration-300 hover:bg-yellow-600 font-bold`}
     onClick={fetchBudgetSuggestions}
     disabled={loadingSuggestions}
   >
@@ -283,24 +283,24 @@ const Budget = () => {
   {budgetSuggestions && (
     <div className="mt-4">
       <h2 className="text-lg font-bold mb-2">Budget Suggestions:</h2>
-      <table className="min-w-full bg-blue-800 text-white border border-yellow-500">
+      <table className="min-w-full bg-blue-800 text-white border border-yellow-500 font-bold">
         <thead>
           <tr>
-            <th className="py-2 border-b">Category</th>
-            <th className="py-2 border-b">Percentage</th>
+            <th className="py-2 border-b font-bold">Category</th>
+            <th className="py-2 border-b font-bold">Percentage</th>
           </tr>
         </thead>
         <tbody>
           {suggestedBudgets.length > 0 ? (
             suggestedBudgets.map((suggestion, index) => (
               <tr key={index}>
-                <td className="py-2 border-b">{suggestion.category}</td>
-                <td className="py-2 border-b">{suggestion.percentage}</td>
+                <td className="py-2 border-b font-bold">{suggestion.category}</td>
+                <td className="py-2 border-b font-bold">{suggestion.percentage}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={2} className="py-2 text-center">No suggestions available.</td>
+              <td colSpan={2} className="py-2 text-center font-bold">No suggestions available.</td>
             </tr>
           )}
         </tbody>
@@ -313,27 +313,27 @@ const Budget = () => {
       {/* Expense Table */}
       <br />
       <div className="overflow-auto">
-        <table className="min-w-full bg-white border-collapse text-black rounded-lg overflow-hidden">
+        <table className="min-w-full bg-white border-collapse text-black rounded-lg overflow-hidden font-bold">
           <thead>
             <tr>
-              <th className="py-3 px-6 bg-gray-200 border text-left">Category</th>
-              <th className="py-3 px-6 bg-gray-200 border text-left">Amount</th>
-              <th className="py-3 px-6 bg-gray-200 border text-left">Date</th>
-              <th className="py-3 px-6 bg-gray-200 border text-left">Description</th>
-              <th className="py-3 px-6 bg-gray-200 border text-left">Actions</th>
+              <th className="py-3 px-6 bg-gray-200 border text-left font-bold">Category</th>
+              <th className="py-3 px-6 bg-gray-200 border text-left font-bold">Amount</th>
+              <th className="py-3 px-6 bg-gray-200 border text-left font-bold">Date</th>
+              <th className="py-3 px-6 bg-gray-200 border text-left font-bold">Description</th>
+              <th className="py-3 px-6 bg-gray-200 border text-left font-bold">Actions</th>
             </tr>
           </thead>
           <tbody>
             {expenses.map((expense) => (
               <tr key={expense.id}>
-                <td className="border px-6 py-3">{expense.category}</td>
-                <td className="border px-6 py-3">${expense.amount}</td>
-                <td className="border px-6 py-3">{expense.date}</td>
-                <td className="border px-6 py-3">{expense.description}</td>
+                <td className="border px-6 py-3 font-bold">{expense.category}</td>
+                <td className="border px-6 py-3 font-bold">${expense.amount}</td>
+                <td className="border px-6 py-3 font-bold">{expense.date}</td>
+                <td className="border px-6 py-3 font-bold">{expense.description}</td>
                 <td className="border px-6 py-3">
                   <button
                     onClick={() => deleteExpense(expense.id)}
-                    className="text-red-500 hover:text-red-700"
+                    className="text-red-500 hover:text-red-700 font-bold"
                   >
                     &#x1F5D1; {/* Trashcan icon */}
                   </button>
