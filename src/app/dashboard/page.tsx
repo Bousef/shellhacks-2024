@@ -3,8 +3,7 @@ import { useState } from "react";
 import { FaChartPie, FaCreditCard, FaHome, FaChevronLeft, FaChevronRight } from "react-icons/fa"; // Add icons
 import Budget from "../Budget/page";
 import MortgageCalculator from "../MortgageCalculator/page";
-// import CreditCardRecommendation from "../CreditCardRecommendation/page"; // Assuming this is another feature
-
+import CreditCardRecommendation from "../CreditCardRecommendation/pages";
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("budget");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to manage sidebar toggle
@@ -85,7 +84,7 @@ const Dashboard = () => {
           <div className="tab-content">
             {activeTab === "budget" && <Budget />}
             {activeTab === "MortgageCalculator" && <MortgageCalculator />}
-            {/* {activeTab === "CreditCardRecommendation" && <CreditCardRecommendation />} */}
+            {activeTab === "CreditCardRecommendation" && <CreditCardRecommendation />}
           </div>
         </div>
       </div>
