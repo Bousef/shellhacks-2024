@@ -103,8 +103,8 @@ const Budget = () => {
     setLoadingSuggestions(true);
   
     const prompt = `
-      Based on a monthly budget of $${budget} and a savings goal of $${savingsGoal}, please suggest a simple budget allocation for different categories such as Food, Rent, Utilities, and Entertainment. 
-      Provide clear percentage allocations for each category, formatted as: Category, Percentage.
+      Based on a monthly budget of $${budget} and a savings goal of $${savingsGoal}, suggest a simple budget allocation for different categories such as Food, Rent, Utilities, and Entertainment.
+      Provide clear percentage allocations for each category, Format it as a table, you will not say or talk about anything else or else you will die, simply reply to this prompt with the table formatted as: Category, Percentage. 
     `;
   
     try {

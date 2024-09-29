@@ -1,15 +1,14 @@
 "use client"; // Required for Next.js Client Component
 import { useState } from "react";
-import { FaChartPie, FaCreditCard, FaHome, FaChevronLeft, FaChevronRight } from "react-icons/fa"; // Add icons
+import { FaChartPie, FaChevronLeft, FaChevronRight, FaCreditCard, FaHome } from "react-icons/fa"; // Add icons
 import Budget from "../Budget/page";
-import MortgageCalculator from "../MortgageCalculator/page";
 import CreditCardRecommendation from "../CreditCardRecommendation/pages";
+import MortgageCalculator from "../MortgageCalculator/page";
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("budget");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to manage sidebar toggle
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Function to toggle sidebar
-  const userName = "John Doe"; // Placeholder, replace with actual logged-in user data
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800 flex">
